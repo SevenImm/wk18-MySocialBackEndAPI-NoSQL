@@ -12,9 +12,9 @@ const {
 
 router.route('/').get(getAllUsers).post(createUser);
 
-router.route('/:userID').get(getUserById).put(updateUser).delete(deletusFetus);
+router.route('/:userId').get(getUserById).put(updateUser).delete(deletusFetus);
 
-router.route('/:userID/friends/:friendId').post(addBestoFrendo).delete(removeTraitor);
+router.route('/:userId/friends/:friendId').post(addBestoFrendo).delete(removeTraitor);
 
 module.exports = router;
 

@@ -14,7 +14,7 @@ router.route('/').get(getAllThoughts).post(createThoughts);
 
 router.route('/:thoughtsId').get(getThoughtsById).put(updateThoughts).delete(undoThougths);
 
-router.route('/:thoughtsId/friends/:friendId').post(addReaction).delete(removeReaction);
+router.route('/:thoughtsId/reaction/:reactionId').post(addReaction).delete(removeReaction);
 
 module.exports = router;
 
