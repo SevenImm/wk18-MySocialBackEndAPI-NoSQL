@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-const assignmentSchema = require('./Assignment');
+// const assignmentSchema = require('./Assignment');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -15,10 +15,31 @@ const userSchema = new mongoose.Schema({
         unique: true,
         // use a regex to "validate" an email 
         match: [/.+@.+\..+/, 'Not an email address!'],
-    }
-    // thoughts once user is set up
+    },
+    thoughts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Thought',
+        },
+    ],
+    friends: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
+},
+{
+    toJSON: {
+        virtuals: true,
+    },
+    id: false,
+}
+);
 
-    // Friends once user is completly set up
+userSchema.virtual('friendCount').get(function () {
+    return this.friends.length;
 });
+const User = mongoose.model('user', userSchema);
 
-module.exports = user;
+module.exports = User;
