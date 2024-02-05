@@ -12,9 +12,9 @@ const {
 
 router.route('/').get(getAllThoughts).post(createThoughts);
 
-router.route('/:thoughtsId').get(getThoughtsById).put(updateThoughts).delete(undoThougths);
+router.route('/:thoughtId').get(getThoughtsById).put(updateThoughts).delete(undoThougths);
 
-router.route('/:thoughtsId/reaction/:reactionId').post(addReaction).delete(removeReaction);
+router.route('/:thoughtId/reaction/:reactionId').post(addReaction).delete(removeReaction);
 
 module.exports = router;
 
