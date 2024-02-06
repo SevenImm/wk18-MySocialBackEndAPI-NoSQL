@@ -14,7 +14,10 @@ router.route('/').get(getAllUsers).post(createUser);
 
 router.route('/:userId').get(getUserById).put(updateUser).delete(deletusFetus);
 
-router.route('/:userId/friends/:friendsId').post(addBestoFrendo).delete(removeTraitor);
+router.route('/:userId/friends/:friendsId').post(addBestoFrendo);
+
+router.route('/:userId/friends/:friendsId').delete(removeTraitor);
+
 
 module.exports = router;
 

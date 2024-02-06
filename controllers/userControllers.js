@@ -69,18 +69,24 @@ const userCont = {
           },
 
           removeTraitor(req, res) {
-            User.findOneAndUpdate({ _id: req.params.userId },
-                { $pull: { friends: req.params.friendId } },
-                { new: true }).then((userData) => {
-                    if (!userData) {
-                        return res.status(404).json({ message: 'user Id not found' });
-                    }
+            User.findOneAndUpdate(
+                { _id: req.params.userId },
+                { $pull: { friends: req.params.friendsId } },
+                { new: true }
+              )
+                .then((userData) => {
+                  if (!userData) {
+                    return res.status(404).json({ message: "No user with this id" });
+                  }
+                  const removed = !userData.friends.includes(req.params.friendId);
+                  if (removed) {
+                    res.json({ message: "Friend removed successfully!", userData });
+                  } else {
                     res.json(userData);
-                }).catch((err) => {
-                    console.log(err);
-                    res.status(500).json(err);
-                });
-          },
-        }
+                  }
+                })
+                .catch((err) => res.status(400).json(err));
+            }
+                }
 
 module.exports = userCont;
