@@ -17,7 +17,7 @@ const reactSchema = new Schema (
         },
         createdAt: {
             type: Date,
-            deafault: Date.now,
+            default: Date.now,
             get: timestamp => new Date(timestamp).toLocaleDateString()
         },
     },
